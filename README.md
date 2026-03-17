@@ -1,1 +1,1 @@
-# MinjungLee.github.io
+# LMJung.github.io
