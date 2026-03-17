@@ -28,7 +28,7 @@
   --mono: 'IBM Plex Mono', monospace;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; font-size: 18px; }
 body {
   background: var(--bg);
   color: var(--text);
@@ -413,6 +413,125 @@ section { margin-bottom: 80px; scroll-margin-top: 72px; }
   transition: color 0.2s;
 }
 .speaking-link:hover { color: var(--accent); }
+.speaking-thumbs { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+.speaking-thumb {
+  position: relative;
+  display: block;
+  width: 200px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.speaking-thumb:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+.speaking-thumb img { width: 100%; display: block; }
+.speaking-thumb .play-icon {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 40px; height: 40px; background: rgba(0,0,0,0.6); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.speaking-thumb .play-icon::after {
+  content: ''; display: block; width: 0; height: 0;
+  border-top: 8px solid transparent; border-bottom: 8px solid transparent;
+  border-left: 14px solid #fff; margin-left: 3px;
+}
+
+/* ── PATENTS ── */
+.patent-item {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.patent-item:last-child { border-bottom: none; }
+.patent-country {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #fff;
+  background: var(--accent);
+  padding: 3px 8px;
+  border-radius: 3px;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+.patent-country.us { background: #2c5282; }
+.patent-name { font-size: 0.88rem; color: var(--text); font-weight: 400; line-height: 1.5; }
+.patent-meta {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ── IMPACT ── */
+.impact-summary {
+  display: flex; gap: 24px; flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.impact-stat {
+  background: var(--accent-light);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  padding: 14px 20px;
+  text-align: center;
+  flex: 1; min-width: 160px;
+}
+.impact-stat-num {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  color: var(--accent);
+  font-weight: 700;
+}
+.impact-stat-label {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.impact-subsection {
+  margin-top: 32px;
+}
+.impact-subsection-title {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--text);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.impact-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+}
+.impact-table th {
+  background: var(--surface2);
+  font-weight: 500;
+  font-size: 0.7rem;
+  color: var(--secondary);
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+}
+.impact-table td {
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+.impact-table tr:last-child td { border-bottom: none; }
+.impact-table .year-col { font-family: var(--mono); font-size: 0.72rem; color: var(--muted); white-space: nowrap; }
+.impact-table .amount-col { font-family: var(--mono); text-align: right; white-space: nowrap; }
+.cert-card {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.cert-card:last-child { border-bottom: none; }
+.cert-title { font-size: 0.88rem; color: var(--text); font-weight: 400; line-height: 1.5; }
+.cert-meta { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); margin-top: 4px; }
+.cert-results { font-size: 0.78rem; color: var(--secondary); margin-top: 6px; line-height: 1.6; }
 
 /* ── TEACHING ── */
 .teaching-item {
@@ -549,7 +668,11 @@ body.lang-en span.en { display: inline; }
   .hero { grid-template-columns: 1fr; padding: 88px 24px 56px; gap: 36px; }
   .hero-photo { max-width: 220px; }
   main { padding: 0 24px 80px; }
-  .edu-item, .project-item, .speaking-item, .teaching-item { grid-template-columns: 1fr; gap: 8px; }
+  .edu-item, .project-item, .speaking-item, .teaching-item, .patent-item { grid-template-columns: 1fr; gap: 8px; }
+  .impact-table { font-size: 0.68rem; }
+  .impact-summary { gap: 12px; }
+  .impact-stat { min-width: 100px; padding: 10px 12px; }
+  .impact-subsection { overflow-x: auto; }
   .award-item { grid-template-columns: 48px 1fr; }
   .award-org { display: none; }
   .interview-grid { grid-template-columns: 1fr; }
@@ -574,6 +697,8 @@ body.lang-en span.en { display: inline; }
       <a href="#awards"><span class="ko">수상</span><span class="en">Awards</span></a>
       <a href="#speaking"><span class="ko">강연</span><span class="en">Talks</span></a>
       <a href="#teaching"><span class="ko">교육</span><span class="en">Teaching</span></a>
+      <a href="#patents"><span class="ko">특허</span><span class="en">Patents</span></a>
+      <a href="#impact"><span class="ko">기술성과</span><span class="en">Impact</span></a>
       <a href="#interview"><span class="ko">인터뷰</span><span class="en">Media</span></a>
       <a href="#contact"><span class="ko">연락처</span><span class="en">Contact</span></a>
     </div>
@@ -621,7 +746,7 @@ body.lang-en span.en { display: inline; }
     <div class="hero-divider"></div>
 
     <p class="hero-bio">
-      <span class="ko">치안, 소방, 경찰, 구급 등 공공안전 전 분야에서 인공지능과 데이터 과학 기술을 활용해 현장의 문제를 해결하고 국민의 생명과 안전을 지키는 과학기술 혁신을 실현합니다. UST 인공지능 전공 조교수로서 차세대 연구자 양성에도 힘쓰고 있습니다.</span>
+      <span class="ko">치안, 소방, 경찰, 구급 등 공공안전 전 분야에서<br>인공지능과 데이터 과학 기술을 활용해<br>현장의 문제를 해결하고<br>국민의 생명과 안전을 지키는<br>과학기술 혁신을 실현합니다.<br><br>UST 인공지능 전공 조교수로서 차세대 연구자 양성에도 힘쓰고 있습니다.</span>
       <span class="en">I apply artificial intelligence and data science across the full spectrum of public safety—policing, firefighting, emergency medical services, and crime investigation—to solve real-world problems and protect lives. As Assistant Professor of AI at UST, I am also committed to training the next generation of researchers.</span>
     </p>
 
@@ -710,10 +835,10 @@ body.lang-en span.en { display: inline; }
   </div>
 
   <div class="pub-card">
-    <div class="pub-title">Distance mean-square loss function for ordinal text classification of emergency service response codes in disaster management</div>
+    <div class="pub-title">Multi-source partial domain adaptation with Gaussian-based dual-level weighting for PPG-based heart rate estimation</div>
     <div class="pub-meta">
       <span class="pub-badge">SCIE</span>
-      <span class="pub-venue">ETRI Journal, Vol. 47(3), pp. 472–479, 2025 &nbsp;·&nbsp; Lee, M., Byon, S., Jung, E., Kwon, E., Park, H. et al.</span>
+      <span class="pub-venue">Knowledge-Based Systems, Vol. 309, 112769, 2025 &nbsp;·&nbsp; Kim, J., Cho, H., Lee, M.*, Kim, S. B.</span>
     </div>
   </div>
 
@@ -721,7 +846,7 @@ body.lang-en span.en { display: inline; }
     <div class="pub-title">Sensor-Based Open-Set Human Activity Recognition Using Representation Learning With Mixup Triplets</div>
     <div class="pub-meta">
       <span class="pub-badge">SCIE</span>
-      <span class="pub-venue">IEEE Access, Vol. 10, pp. 119333–119344, 2022 &nbsp;·&nbsp; Lee, M., Kim, S. B.</span>
+      <span class="pub-venue">IEEE Access, Vol. 10, pp. 119333–119344, 2022 &nbsp;·&nbsp; Lee, M., Kim, S. B.*</span>
     </div>
   </div>
 
@@ -729,7 +854,7 @@ body.lang-en span.en { display: inline; }
     <div class="pub-title">Safe semi-supervised learning using a Bayesian neural network</div>
     <div class="pub-meta">
       <span class="pub-badge">SCIE</span>
-      <span class="pub-venue">Information Sciences, Vol. 612, pp. 453–464, 2022 &nbsp;·&nbsp; Bae, J., Lee, M., Kim, S. B.</span>
+      <span class="pub-venue">Information Sciences, Vol. 612, pp. 453–464, 2022 &nbsp;·&nbsp; Bae, J., Lee, M., Kim, S. B.*</span>
     </div>
   </div>
 
@@ -737,7 +862,7 @@ body.lang-en span.en { display: inline; }
     <div class="pub-title">Uncertainty-aware soft sensor using Bayesian recurrent neural networks</div>
     <div class="pub-meta">
       <span class="pub-badge">SCIE</span>
-      <span class="pub-venue">Advanced Engineering Informatics, Vol. 50, 101434, 2021 &nbsp;·&nbsp; Lee, M., Bae, J., Kim, S. B.</span>
+      <span class="pub-venue">Advanced Engineering Informatics, Vol. 50, 101434, 2021 &nbsp;·&nbsp; Lee, M., Bae, J., Kim, S. B.*</span>
     </div>
   </div>
 
@@ -745,7 +870,7 @@ body.lang-en span.en { display: inline; }
     <div class="pub-title">Swarm ascending: Swarm intelligence-based exemplar group detection for robust clustering</div>
     <div class="pub-meta">
       <span class="pub-badge">SCIE</span>
-      <span class="pub-venue">Applied Soft Computing, Vol. 102, 107062, 2021 &nbsp;·&nbsp; Kim, Y., Lee, M., Kim, S. B.</span>
+      <span class="pub-venue">Applied Soft Computing, Vol. 102, 107062, 2021 &nbsp;·&nbsp; Kim, Y., Lee, M., Kim, S. B.*</span>
     </div>
   </div>
 
@@ -780,18 +905,18 @@ body.lang-en span.en { display: inline; }
     </div>
     <div class="proj-body">
       <div class="proj-title"><span class="ko">사이버범죄 수사단서 통합분석 및 추론시스템 개발 (Cyber C.O.P.)</span><span class="en">Integrated Cyber Crime Investigation System (Cyber C.O.P.)</span></div>
-      <div class="proj-desc"><span class="ko">보이스피싱·다크웹·암호화폐 연계 범죄에 실시간으로 대응하기 위한 국산 통합 수사 분석 및 추론 시스템을 개발합니다. 외산 수사 솔루션의 한계를 극복하고 국산 ICT 기술로 독자적인 사이버범죄 대응 체계를 구축합니다.</span><span class="en">Developing a domestic integrated investigation analysis and reasoning system to respond in real time to voice phishing, dark web, and cryptocurrency-linked crimes, overcoming the limitations of foreign-led investigation solutions.</span></div>
+      <div class="proj-desc"><span class="ko">보이스피싱·다크웹·암호화폐 연계 범죄에 실시간으로 대응하기 위한 국산 통합 수사 분석 및 추론 시스템을 개발합니다.<br>외산 수사 솔루션의 한계를 극복하고 국산 ICT 기술로 독자적인 사이버범죄 대응 체계를 구축합니다.</span><span class="en">Developing a domestic integrated investigation analysis and reasoning system to respond in real time to voice phishing, dark web, and cryptocurrency-linked crimes, overcoming the limitations of foreign-led investigation solutions.</span></div>
     </div>
   </div>
 
   <div class="project-item">
     <div class="proj-meta">
-      <div class="proj-period">2023.04 — <span class="ko">현재</span><span class="en">Present</span></div>
+      <div class="proj-period">2023.04 — <span class="ko">2025.12</span><span class="en">Present</span></div>
       <div class="proj-agency"><span class="ko">소방청 & KEIT</span><span class="en">National Fire Agency & KEIT</span></div>
     </div>
     <div class="proj-body">
       <div class="proj-title"><span class="ko">구급현장 통합정보 연계 지능형 구급활동 지원 플랫폼 개발 (P.A.C.T.-ems)</span><span class="en">Intelligent Emergency Medical Support Platform (P.A.C.T.-ems)</span></div>
-      <div class="proj-desc"><span class="ko">음성·영상·생체신호 등 다양한 현장 데이터를 수집·통합하는 멀티모달 빅데이터 기반의 지능형 응급 플랫폼을 개발합니다. 상태 평가, 악화 예측, 적정 처치, 이송 병원 선정 등 핵심 응급의사결정을 지원합니다.</span><span class="en">Developing an intelligent emergency platform based on multimodal big data that integrates voice, video, and biosignals to support paramedics' real-time decision-making including patient assessment, deterioration prediction, and hospital selection.</span></div>
+      <div class="proj-desc"><span class="ko">음성·영상·생체신호 등 다양한 현장 데이터를 수집·통합하는 멀티모달 빅데이터 기반의 지능형 응급 플랫폼을 개발합니다.<br> 상태 평가, 악화 예측, 적정 처치, 이송 병원 선정 등 핵심 응급의사결정을 지원합니다.</span><span class="en">Developing an intelligent emergency platform based on multimodal big data that integrates voice, video, and biosignals to support paramedics' real-time decision-making including patient assessment, deterioration prediction, and hospital selection.</span></div>
     </div>
   </div>
 
@@ -802,7 +927,7 @@ body.lang-en span.en { display: inline; }
     </div>
     <div class="proj-body">
       <div class="proj-title"><span class="ko">112 긴급출동 의사결정 지원 시스템 개발</span><span class="en">AI-Based 112 Emergency Dispatch Decision Support System</span></div>
-      <div class="proj-desc"><span class="ko">음향·음성 인식, NLP, 위험도 분석, 대응정보 추론 기술을 통합하여 현장 경찰관의 신속한 초기 대응을 지원하는 AI 시스템을 개발하였습니다.</span><span class="en">Developed an AI system integrating acoustic/speech recognition, NLP, risk analysis, and response information reasoning to support rapid initial police response.</span></div>
+      <div class="proj-desc"><span class="ko">112 신고 음성에서 음성 기반 의도 분석(Speech-based Intent Analysis)을 수행하고,<br>관련 법령·매뉴얼·유사 사건을 자동 추천하는 AI 의사결정 지원 시스템을 개발하였습니다.<br>음향·음성 인식, NLP, 위험도 분석, 대응정보 추론 기술을 통합하여 현장 경찰관의 신속한 초기 대응을 지원합니다.</span><span class="en">Developed an AI decision support system performing speech-based intent analysis on 112 emergency calls, with automatic recommendation of relevant laws, manuals, and similar cases. Integrates acoustic/speech recognition, NLP, risk analysis, and response information reasoning to support rapid initial police response.</span></div>
     </div>
   </div>
 
@@ -813,7 +938,7 @@ body.lang-en span.en { display: inline; }
     </div>
     <div class="proj-body">
       <div class="proj-title"><span class="ko">119신고 접수에 대한 딥러닝 기반 재난 상황인지 및 대응지원 모델링 기술 개발</span><span class="en">Deep Learning-Based Disaster Situation Awareness and Response Support for 119 Calls</span></div>
-      <div class="proj-desc"><span class="ko">119 신고 음성 데이터를 AI로 분석해 재난 유형을 자동 분류하고 대응 매뉴얼을 실시간으로 제공하는 지능형 재난 상황인지 플랫폼을 개발하였습니다.</span><span class="en">Developed an AI platform analyzing 119 emergency call voice data for automatic disaster type classification and real-time response manual recommendation.</span></div>
+      <div class="proj-desc"><span class="ko">119 신고 음성에 STT·NLP 기술을 적용하여 재난 유형을 자동 분류하고 상황인지를 수행하는 플랫폼을 개발하였습니다.<br>DSO(재난안전상황실) 플랫폼과 연계하여 실시간 대응 매뉴얼 추천 및 재난 상황 모니터링을 지원합니다.</span><span class="en">Developed a platform applying STT and NLP to 119 emergency calls for automatic disaster type classification and situation awareness. Integrated with the DSO (Disaster Safety Operations) platform for real-time response manual recommendation and disaster situation monitoring.</span></div>
     </div>
   </div>
 
@@ -824,7 +949,7 @@ body.lang-en span.en { display: inline; }
     </div>
     <div class="proj-body">
       <div class="proj-title"><span class="ko">위험 상황 초기 인지를 위한 ICT 기반 범죄 위험도 예측 및 대응 기술 개발</span><span class="en">ICT-Based Crime Risk Prediction & Response for Early Threat Detection</span></div>
-      <div class="proj-desc"><span class="ko">112 신고 빅데이터 기반의 지능형 치안 예측 플랫폼을 개발하였습니다. 딥러닝 기반 범죄 분류, 위험도 예측, 시계열 모니터링 기술을 통합하여 실시간 대응 시스템을 구축하였습니다.</span><span class="en">Developed an intelligent policing prediction platform integrating ML/DL-based crime classification, risk prediction, and time-series monitoring using 112 emergency call big data.</span></div>
+      <div class="proj-desc"><span class="ko">고려대학교 산학협력 과제로, 112 신고 빅데이터 기반의 지능형 치안 예측 플랫폼을 개발하였습니다.<br>Stacking(Boosting + Deep Learning) 앙상블과 범죄 유사도 분석 기술을 결합하여<br>범죄 분류, 위험도 예측, 시계열 모니터링을 통합한 실시간 대응 시스템을 구축하였습니다.</span><span class="en">A Korea University industry-academia project developing an intelligent policing platform based on 112 emergency call big data. Built a real-time response system combining stacking ensemble (Boosting + Deep Learning) with crime similarity analysis for crime classification, risk prediction, and time-series monitoring.</span></div>
     </div>
   </div>
 
@@ -835,7 +960,7 @@ body.lang-en span.en { display: inline; }
     </div>
     <div class="proj-body">
       <div class="proj-title"><span class="ko">알려지지 않은 이상 패턴 탐지를 위한 오픈셋 분류 AI 기술 개발</span><span class="en">Open-Set Classification AI for Unknown Anomaly Detection</span></div>
-      <div class="proj-desc"><span class="ko">반도체 공정 설비 데이터 기반 오픈셋 분류 AI 모델을 설계하였습니다. 딥러닝 메트릭 러닝과 마할라노비스 거리 기반 탐지 알고리즘, 액티브 러닝 기반 적응형 학습 구조를 결합하였습니다.</span><span class="en">Designed an open-set classification AI model for semiconductor manufacturing, combining deep metric learning, Mahalanobis distance-based detection, and active learning-based adaptive structure.</span></div>
+      <div class="proj-desc"><span class="ko">반도체 공정 설비 데이터를 위한 오픈셋 분류 AI 모델을 설계하였습니다.<br>딥러닝 메트릭 러닝과 마할라노비스 거리 기반 탐지 알고리즘, 액티브 러닝 기반 적응형 학습 구조를 결합하였습니다.</span><span class="en">Designed an open-set classification AI model for semiconductor manufacturing, combining deep metric learning, Mahalanobis distance-based detection, and active learning-based adaptive structure.</span></div>
     </div>
   </div>
 
@@ -846,7 +971,84 @@ body.lang-en span.en { display: inline; }
     </div>
     <div class="proj-body">
       <div class="proj-title"><span class="ko">반도체 FAB 물류 운영 시스템 동적 자율 제어 방안 연구</span><span class="en">Dynamic Autonomous Control for Semiconductor FAB Logistics</span></div>
-      <div class="proj-desc"><span class="ko">실제 FAB 물류 환경에 강화학습을 최초로 적용하여 최적의 물류 경로를 실시간으로 자율 결정하는 제어 방안을 개발하였습니다. 그래프 기반 모델링, Actor-Critic 제어, Imitation Learning을 결합하였습니다.</span><span class="en">First application of reinforcement learning to a real FAB logistics environment, developing autonomous real-time control for optimal transport routing. Combined graph-based logistics modeling, Actor-Critic control, and imitation learning.</span></div>
+      <div class="proj-desc"><span class="ko">반도체 FAB 물류 환경에 강화학습을 적용하여 최적의 물류 경로를 결정하는 동적 자율 제어 방안을 개발하였습니다.<br>그래프 기반 물류 모델링, 시계열 다지점(Time-series Multi-point) 상태 표현, State-Action-Reward 설계,<br>Imitation Learning을 결합한 Actor-Critic 제어 구조를 구현하였습니다.</span><span class="en">First application of reinforcement learning to a real semiconductor FAB logistics environment for dynamic autonomous control. Implemented an Actor-Critic architecture combining graph-based logistics modeling, time-series multi-point state representation, state-action-reward design, and imitation learning.</span></div>
+    </div>
+  </div>
+
+  <div class="project-item">
+    <div class="proj-meta">
+      <div class="proj-period">2019.04 — 2019.12</div>
+      <div class="proj-agency"><span class="ko">현대자동차</span><span class="en">Hyundai Motor</span></div>
+    </div>
+    <div class="proj-body">
+      <div class="proj-title"><span class="ko">AI 활용 시험 효율화를 위한 고장 예측 및 시험 기법 개발 — 샤시 부품 센서를 통한 6분력 하중 예측</span><span class="en">AI-Based Fault Prediction & Test Optimization — 6-Component Load Prediction via Chassis Sensors</span></div>
+      <div class="proj-desc"><span class="ko">고가의 6분력 센서를 대체하기 위해 샤시 부품에 장착된 일반 센서 데이터로부터<br>머신러닝 모델을 활용하여 6분력 하중을 예측하는 기술을 개발하였습니다.</span><span class="en">Developed ML models to predict 6-component loads from chassis-mounted general sensor data, replacing expensive dedicated 6-component load sensors. (Project Lead)</span></div>
+    </div>
+  </div>
+
+  <div class="project-item">
+    <div class="proj-meta">
+      <div class="proj-period">2019.04 — 2019.12</div>
+      <div class="proj-agency"><span class="ko">현대자동차</span><span class="en">Hyundai Motor</span></div>
+    </div>
+    <div class="proj-body">
+      <div class="proj-title"><span class="ko">AI 활용 시험 효율화를 위한 고장 예측 및 시험 기법 개발 — 내구용 타이어 모델과 입력 하중 상관</span><span class="en">AI-Based Fault Prediction & Test Optimization — Durability Tire Model & Input Load Correlation</span></div>
+      <div class="proj-desc"><span class="ko">Random Forest 기반 변수 중요도 분석과 Decision Tree 기반 설계 파라미터 추출을 통해<br>내구용 타이어 모델과 입력 하중 간의 상관관계를 규명하였습니다.</span><span class="en">Identified correlations between durability tire models and input loads through Random Forest-based variable importance analysis and Decision Tree-based design parameter extraction. (Project Lead)</span></div>
+    </div>
+  </div>
+
+  <div class="project-item">
+    <div class="proj-meta">
+      <div class="proj-period">2018.11 — 2018.11</div>
+      <div class="proj-agency"><span class="ko">㈜다음소프트</span><span class="en">Daumsoft</span></div>
+    </div>
+    <div class="proj-body">
+      <div class="proj-title"><span class="ko">이동통신 맞춤형 요금제 추천 빅데이터 기술 고도화</span><span class="en">Big Data Optimization for Personalized Mobile Plan Recommendation</span></div>
+      <div class="proj-desc"><span class="ko">고객 사용 패턴 기반 클러스터링과 최적 요금제 추천 알고리즘을 개발하여<br>이동통신 고객 맞춤형 요금제를 자동 추천하는 시스템을 구축하였습니다.</span><span class="en">Developed customer usage pattern-based clustering and optimal plan recommendation algorithms for automated personalized mobile plan suggestions. (Project Lead)</span></div>
+    </div>
+  </div>
+
+  <div class="project-item">
+    <div class="proj-meta">
+      <div class="proj-period">2018.05 — 2018.10</div>
+      <div class="proj-agency"><span class="ko">한국과학기술정보연구원</span><span class="en">KISTI</span></div>
+    </div>
+    <div class="proj-body">
+      <div class="proj-title"><span class="ko">과학기술분류체계 자동구축방법 기초연구</span><span class="en">Foundational Research on Automated Science & Technology Classification System</span></div>
+      <div class="proj-desc"><span class="ko">비지도 클러스터링 기반 과학기술 문서 분류 및 문서 요약 기술을 연구하여<br>과학기술분류체계의 자동 구축 방법론을 개발하였습니다.</span><span class="en">Researched unsupervised clustering-based science & technology document classification and document summarization techniques for automated taxonomy construction.</span></div>
+    </div>
+  </div>
+
+  <div class="project-item">
+    <div class="proj-meta">
+      <div class="proj-period">2018.05 — 2018.10</div>
+      <div class="proj-agency"><span class="ko">현대자동차</span><span class="en">Hyundai Motor</span></div>
+    </div>
+    <div class="proj-body">
+      <div class="proj-title"><span class="ko">센서데이터를 통한 미인지 신호 분석 기술 개발</span><span class="en">Unrecognized Signal Analysis via Sensor Data</span></div>
+      <div class="proj-desc"><span class="ko">Strain 센서 데이터로부터 Load 센서 신호를 예측하는 머신러닝 모델을 개발하여<br>기존에 인지하지 못했던 센서 간 상관관계를 분석하였습니다.</span><span class="en">Developed ML models to predict load sensor signals from strain sensor data, analyzing previously unrecognized correlations between sensor types.</span></div>
+    </div>
+  </div>
+
+  <div class="project-item">
+    <div class="proj-meta">
+      <div class="proj-period">2017.07 — 2017.10</div>
+      <div class="proj-agency"><span class="ko">현대자동차</span><span class="en">Hyundai Motor</span></div>
+    </div>
+    <div class="proj-body">
+      <div class="proj-title"><span class="ko">이상패턴탐지를 위한 센서데이터 분석</span><span class="en">Sensor Data Analysis for Anomaly Pattern Detection</span></div>
+      <div class="proj-desc"><span class="ko">비지도 클러스터링 기반으로 센서 데이터의 비정상 구간을 자동 식별하고<br>이상 패턴을 탐지하는 분석 기법을 개발하였습니다.</span><span class="en">Developed unsupervised clustering-based analysis techniques for automatic identification of abnormal segments and anomaly pattern detection in sensor data.</span></div>
+    </div>
+  </div>
+
+  <div class="project-item">
+    <div class="proj-meta">
+      <div class="proj-period">2017.05 — 2017.10</div>
+      <div class="proj-agency"><span class="ko">경찰대</span><span class="en">Korean National Police University</span></div>
+    </div>
+    <div class="proj-body">
+      <div class="proj-title"><span class="ko">신종 범죄수법에 대응한 경찰 범죄수법 분류체계 개선 연구</span><span class="en">Improving Police Crime Method Classification System for Emerging Crime Patterns</span></div>
+      <div class="proj-desc"><span class="ko">머신러닝 기반 범죄 유형 클러스터링과 딥러닝 기반 범죄수법 분류 모델을 개발하여<br>신종 범죄수법에 대응하는 경찰 분류체계 개선 방안을 연구하였습니다.</span><span class="en">Developed ML-based crime type clustering and DL-based crime method classification models to improve the police classification system for emerging crime patterns.</span></div>
     </div>
   </div>
 </section>
@@ -919,13 +1121,26 @@ body.lang-en span.en { display: inline; }
 
   <div class="speaking-item">
     <div class="speaking-venue">
+      <span class="ko">KDI국제정책대학원</span>
+      <span class="en">KDI School of Public Policy</span>
+    </div>
+    <div>
+      <div class="speaking-title"><span class="ko">(초청 강연) 인도 마드햐 프라데시 경찰공무원 연수과정</span><span class="en">(Invited Talk) India Madhya Pradesh Police Officials Training Program</span></div>
+      <div class="speaking-date">2025.10.29</div>
+    </div>
+  </div>
+
+  <div class="speaking-item">
+    <div class="speaking-venue">
       <span class="ko">안될과학 랩미팅<br>(YouTube)</span>
       <span class="en">Andoel Science<br>Lab Meeting (YouTube)</span>
     </div>
     <div>
       <div class="speaking-title"><span class="ko">유튜브 채널 강연 (2회)</span><span class="en">YouTube Channel Lectures (×2)</span></div>
-      <a href="https://youtu.be/CCV1sX9Jaog" class="speaking-link" target="_blank">▶ youtu.be/CCV1sX9Jaog</a>
-      <a href="https://youtu.be/zIAAvrxT_-U" class="speaking-link" target="_blank">▶ youtu.be/zIAAvrxT_-U</a>
+      <div class="speaking-thumbs">
+        <a href="https://youtu.be/CCV1sX9Jaog" class="speaking-thumb" target="_blank"><img src="https://img.youtube.com/vi/CCV1sX9Jaog/mqdefault.jpg" alt="YouTube"><span class="play-icon"></span></a>
+        <a href="https://youtu.be/zIAAvrxT_-U" class="speaking-thumb" target="_blank"><img src="https://img.youtube.com/vi/zIAAvrxT_-U/mqdefault.jpg" alt="YouTube"><span class="play-icon"></span></a>
+      </div>
     </div>
   </div>
 
@@ -933,7 +1148,9 @@ body.lang-en span.en { display: inline; }
     <div class="speaking-venue">Open DMQA Seminar</div>
     <div>
       <div class="speaking-title">Unsupervised Domain Adaptation</div>
-      <a href="https://youtu.be/dPSSMLhFGpI" class="speaking-link" target="_blank">▶ youtu.be/dPSSMLhFGpI</a>
+      <div class="speaking-thumbs">
+        <a href="https://youtu.be/dPSSMLhFGpI" class="speaking-thumb" target="_blank"><img src="https://img.youtube.com/vi/dPSSMLhFGpI/mqdefault.jpg" alt="YouTube"><span class="play-icon"></span></a>
+      </div>
     </div>
   </div>
 
@@ -941,7 +1158,9 @@ body.lang-en span.en { display: inline; }
     <div class="speaking-venue">Open DMQA Seminar</div>
     <div>
       <div class="speaking-title">Deep Metric Learning</div>
-      <a href="https://youtu.be/hH-UgJ--r_4" class="speaking-link" target="_blank">▶ youtu.be/hH-UgJ--r_4</a>
+      <div class="speaking-thumbs">
+        <a href="https://youtu.be/hH-UgJ--r_4" class="speaking-thumb" target="_blank"><img src="https://img.youtube.com/vi/hH-UgJ--r_4/mqdefault.jpg" alt="YouTube"><span class="play-icon"></span></a>
+      </div>
     </div>
   </div>
 
@@ -949,7 +1168,9 @@ body.lang-en span.en { display: inline; }
     <div class="speaking-venue">Open DMQA Seminar</div>
     <div>
       <div class="speaking-title">Semi-supervised Learning — MixMatch</div>
-      <a href="https://youtu.be/5GfOEL_L8LQ" class="speaking-link" target="_blank">▶ youtu.be/5GfOEL_L8LQ</a>
+      <div class="speaking-thumbs">
+        <a href="https://youtu.be/5GfOEL_L8LQ" class="speaking-thumb" target="_blank"><img src="https://img.youtube.com/vi/5GfOEL_L8LQ/mqdefault.jpg" alt="YouTube"><span class="play-icon"></span></a>
+      </div>
     </div>
   </div>
 </section>
@@ -1042,10 +1263,353 @@ body.lang-en span.en { display: inline; }
   </div>
 </section>
 
-<!-- 07 INTERVIEW -->
-<section id="interview">
+<!-- 07 PATENTS -->
+<section id="patents">
   <div class="section-header">
     <span class="section-num">07</span>
+    <h2 class="section-title"><span class="ko">지식재산권</span><span class="en">Patents</span></h2>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">보이스피싱 대화의 적극탐지 및 적극대응을 위한 방법 및 장치</div>
+      <div class="patent-meta">출원 2025.11.17 · 2025-0174095 · 제1발명자: 박현호</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">다중 네트워크 프로토콜 지원 기반 네트워크 전환을 위한 방법, 장치 및 시스템</div>
+      <div class="patent-meta">출원 2025.11.04 · 2025-0163915 · 제1발명자: 변성원</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">다채널 기반의 신고 데이터 통합을 이용한 긴급신고 접수 방법 및 이를 위한 장치</div>
+      <div class="patent-meta">출원 2025.10.16 · 2025-0149334 · 제1발명자: 이민정</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">언어 모델 기반 다중 턴 의도 분석 방법, 장치 및 시스템</div>
+      <div class="patent-meta">출원 2025.10.13 · 2025-0146795 · 제1발명자: 김세린</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">구급상황에 특화된 개체명 인식을 이용한 구급상황 지원 방법 및 장치</div>
+      <div class="patent-meta">출원 2025.06.30 · 2025-0087169 · 제1발명자: 박현호</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">스마트폰의 사이버 범죄 탐지 및 대응을 위한 AI 에이전트의 방법 및 시스템</div>
+      <div class="patent-meta">출원 2025.05.08 · 2025-0059711 · 제1발명자: 박현호</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">인공지능 기반 의료 데이터 분류 장치 및 방법</div>
+      <div class="patent-meta">출원 2025.04.30 · 2025-0057019 · 제1발명자: 고예진</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">긴급 상황 대응 정보 제공 장치 및 방법</div>
+      <div class="patent-meta">출원 2025.04.16 · 2025-0049223 · 제1발명자: 이민정</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country us">US</div>
+    <div>
+      <div class="patent-name">Method of Training Monotonic Multi-Label Classification Model to Improve Performance of Emergency Report Analysis</div>
+      <div class="patent-meta">Filed 2025.02.05 · 19/045751 · 1st Inventor: 이은결</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">긴급신고 분석 성능 향상을 위한 단조로운 다중 레이블 분류 모델의 학습 방법</div>
+      <div class="patent-meta">출원 2025.01.15 · 2025-0006150 · 제1발명자: 이은결</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">배터리 시설 위험 상황 관리 장치</div>
+      <div class="patent-meta">출원 2024.12.11 · 2024-0184202 · 제1발명자: 권은정</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">노이즈 레이블을 정정하는 기계 학습 모델을 포함하는 서버 장치의 동작하는 방법, 이를 포함하는 응급 상황 예측 시스템, 및 이것의 동작하는 방법</div>
+      <div class="patent-meta">출원 2024.11.21 · 2024-0166788 · 제1발명자: 권은정</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country us">US</div>
+    <div>
+      <div class="patent-name">Electronic Device for Providing Similar Incident Information about Reported Incident and Operating Method of Electronic Device</div>
+      <div class="patent-meta">Filed 2024.11.13 · 18/946329 · 1st Inventor: 박현호</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">상담 제공 방법 및 장치</div>
+      <div class="patent-meta">출원 2024.11.12 · 2024-0159969 · 제1발명자: 권은정</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">인공지능 기반 긴급신고 처리장치 및 그 방법</div>
+      <div class="patent-meta">출원 2024.10.02 · 2024-0133951 · 제1발명자: 권은정</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country us">US</div>
+    <div>
+      <div class="patent-name">Method and Apparatus for Performing Context Awareness and Response Based on Multi-Turn Dialogue</div>
+      <div class="patent-meta">Filed 2024.09.05 · 18/825986 · 1st Inventor: 이민정</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country us">US</div>
+    <div>
+      <div class="patent-name">Apparatus and Method for Mapping Emergency Call Datamanual</div>
+      <div class="patent-meta">Filed 2024.05.17 · 18/667219 · 1st Inventor: 이민정</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">응급의료 지원 장치 및 방법</div>
+      <div class="patent-meta">출원 2024.04.12 · 2024-0049471 · 제1발명자: 전예림</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">환자 평가 장치 및 방법</div>
+      <div class="patent-meta">출원 2024.04.05 · 2024-0046751 · 제1발명자: 이민정</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">구급긴급도 예측 방법 및 시스템</div>
+      <div class="patent-meta">출원 2024.03.29 · 2024-0043496 · 제1발명자: 이민정</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">멀티턴 대화 기반의 상황 인지 및 응답을 수행하는 방법 및 장치</div>
+      <div class="patent-meta">출원 2023.11.27 · 2023-0166765 · 제1발명자: 이민정</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">음성 요약 방법 및 장치</div>
+      <div class="patent-meta">출원 2023.11.20 · 2023-0160191 · 제1발명자: 이지민</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">신고된 사건에 대한 유사 사건 정보를 제공하는 전자 장치 및 그 동작 방법</div>
+      <div class="patent-meta">출원 2023.11.14 · 2023-0157461 · 제1발명자: 박현호</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">긴급 전화 데이터 매뉴얼을 매핑하는 장치 및 방법</div>
+      <div class="patent-meta">출원 2023.05.22 · 2023-0065737 · 제1발명자: 이민정</div>
+    </div>
+  </div>
+
+  <div class="patent-item">
+    <div class="patent-country">KR</div>
+    <div>
+      <div class="patent-name">문장 단위 의미 유사성 비교를 통한 긴급신고 학습용 데이터 증강 방법 및 장치</div>
+      <div class="patent-meta">출원 2023.02.20 · 2023-0022398 · 제1발명자: 권은정</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- 08 IMPACT -->
+<section id="impact">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2 class="section-title"><span class="ko">기술 성과</span><span class="en">Technology Impact</span></h2>
+  </div>
+
+  <div class="impact-summary">
+    <div class="impact-stat">
+      <div class="impact-stat-num">31<span style="font-size:0.8rem">건</span></div>
+      <div class="impact-stat-label"><span class="ko">사업화</span><span class="en">Commercialization</span></div>
+    </div>
+    <div class="impact-stat">
+      <div class="impact-stat-num">28.5<span style="font-size:0.8rem">억원</span></div>
+      <div class="impact-stat-label"><span class="ko">총 매출</span><span class="en">Total Revenue</span></div>
+    </div>
+    <div class="impact-stat">
+      <div class="impact-stat-num">3<span style="font-size:0.8rem">건</span></div>
+      <div class="impact-stat-label"><span class="ko">기술이전</span><span class="en">Tech Transfer</span></div>
+    </div>
+    <div class="impact-stat">
+      <div class="impact-stat-num">9,500<span style="font-size:0.8rem">만원</span></div>
+      <div class="impact-stat-label"><span class="ko">기술료</span><span class="en">Licensing Fee</span></div>
+    </div>
+    <div class="impact-stat">
+      <div class="impact-stat-num">3<span style="font-size:0.8rem">건</span></div>
+      <div class="impact-stat-label"><span class="ko">공인시험 인증</span><span class="en">TTA Certified</span></div>
+    </div>
+  </div>
+
+  <!-- 사업화 -->
+  <div class="impact-subsection">
+    <div class="impact-subsection-title"><span class="ko">사업화</span><span class="en">Commercialization</span></div>
+    <table class="impact-table">
+      <thead>
+        <tr>
+          <th><span class="ko">사업화명</span><span class="en">Contract</span></th>
+          <th><span class="ko">수행기관</span><span class="en">Executor</span></th>
+          <th><span class="ko">대상기관</span><span class="en">Client</span></th>
+          <th class="amount-col"><span class="ko">계약금(천원)</span><span class="en">Amount(₩K)</span></th>
+          <th><span class="ko">연도</span><span class="en">Year</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>BONA AICC 서비스</td><td>㈜브로드씨엔에스</td><td>창원한마음병원</td><td class="amount-col">22,000</td><td class="year-col">'24</td></tr>
+        <tr><td>BONA AICC 서비스</td><td>㈜브로드씨엔에스</td><td>좋은문화병원</td><td class="amount-col">23,320</td><td class="year-col">'24</td></tr>
+        <tr><td>BONA AICC 서비스</td><td>㈜브로드씨엔에스</td><td>마음사랑병원</td><td class="amount-col">27,527</td><td class="year-col">'24</td></tr>
+        <tr><td>BONA AICC 서비스</td><td>㈜브로드씨엔에스</td><td>전주대자인병원</td><td class="amount-col">29,645</td><td class="year-col">'24</td></tr>
+        <tr><td>BONA AICC 서비스</td><td>㈜브로드씨엔에스</td><td>자인플러스병원</td><td class="amount-col">14,300</td><td class="year-col">'24</td></tr>
+        <tr><td>BONA AICC 서비스</td><td>㈜브로드씨엔에스</td><td>우리들병원 청담</td><td class="amount-col">35,000</td><td class="year-col">'24</td></tr>
+        <tr><td>BONA AICC 서비스</td><td>㈜브로드씨엔에스</td><td>부민병원 부산해운대</td><td class="amount-col">30,993</td><td class="year-col">'24</td></tr>
+        <tr><td>BONA AICC 서비스</td><td>㈜브로드씨엔에스</td><td>김안과병원</td><td class="amount-col">31,900</td><td class="year-col">'24</td></tr>
+        <tr><td>인공지능 기반 119신고접수시스템 구축</td><td>㈜다이퀘스트</td><td>㈜케이엘정보통신</td><td class="amount-col">92,000</td><td class="year-col">'24</td></tr>
+        <tr><td>성남시의료원 가명처리 시스템 공급</td><td>㈜지란지교데이터</td><td>성남시의료원</td><td class="amount-col">56,900</td><td class="year-col">'23</td></tr>
+        <tr><td>영동군청 가명처리 시스템 공급</td><td>㈜지란지교데이터</td><td>영동군청</td><td class="amount-col">28,000</td><td class="year-col">'23</td></tr>
+        <tr><td>대전정보문화산업진흥원 가명처리 시스템 공급</td><td>㈜지란지교데이터</td><td>대전정보문화산업진흥원</td><td class="amount-col">56,000</td><td class="year-col">'23</td></tr>
+        <tr><td>히어로손해사정 가명처리 시스템 공급</td><td>㈜지란지교데이터</td><td>㈜한화시스템</td><td class="amount-col">24,200</td><td class="year-col">'23</td></tr>
+        <tr><td>청주시청 가명처리 시스템 공급</td><td>㈜지란지교데이터</td><td>㈜에즈웰</td><td class="amount-col">18,200</td><td class="year-col">'23</td></tr>
+        <tr><td>판교 제2테크로밸리 스마트산단 구축사업</td><td>씨이엔코퍼레이션</td><td>㈜유티정보</td><td class="amount-col">47,944</td><td class="year-col">'23</td></tr>
+        <tr><td>실시간 도시 데이터 융합 119 재난대응 플랫폼 구축</td><td>㈜위니텍</td><td>한국지역정보개발원</td><td class="amount-col">990,000</td><td class="year-col">'23</td></tr>
+        <tr><td>고객센터 콜봇 상담 서비스 STT 개발</td><td>㈜셀바스 AI</td><td>㈜LG U+</td><td class="amount-col">191,200</td><td class="year-col">'23</td></tr>
+        <tr><td>양지병원 전화예약센터 업무위탁</td><td>㈜브로드씨엔에스</td><td>양지병원</td><td class="amount-col">68,680</td><td class="year-col">'23</td></tr>
+        <tr><td>㈜엘지씨엔에스_KB FCC 1-2 손해보험_TA</td><td>㈜NHN다이퀘스트</td><td>㈜엘지씨엔에스</td><td class="amount-col">435,736</td><td class="year-col">'23</td></tr>
+        <tr><td>강서구 시설관리공단 개인정보보호 통합구축사업</td><td>㈜지란지교데이터</td><td>㈜트리트비즈</td><td class="amount-col">30,000</td><td class="year-col">'21</td></tr>
+        <tr><td>IDFILTER V1.0 비식별/전송 공급</td><td>㈜지란지교데이터</td><td>㈜제이시큐어플랫폼</td><td class="amount-col">12,000</td><td class="year-col">'21</td></tr>
+        <tr><td>인공지능데이터 비식별화 솔루션 공급</td><td>㈜지란지교데이터</td><td>㈜한국플랫폼서비스기술</td><td class="amount-col">32,500</td><td class="year-col">'21</td></tr>
+        <tr><td>IDFILTER V1.0 비식별/결합 공급</td><td>㈜지란지교데이터</td><td>㈜우경정보기술</td><td class="amount-col">24,500</td><td class="year-col">'21</td></tr>
+        <tr><td>IDFILTER V1.0 비식별/결합 공급</td><td>㈜지란지교데이터</td><td>비트시스템</td><td class="amount-col">34,500</td><td class="year-col">'21</td></tr>
+        <tr><td>국립암센터 비식별/결합 솔루션 공급</td><td>㈜지란지교데이터</td><td>국립암센터</td><td class="amount-col">49,500</td><td class="year-col">'21</td></tr>
+        <tr><td>동산의료원 비식별 솔루션 공급</td><td>㈜지란지교데이터</td><td>계명대학교 동산의료원</td><td class="amount-col">34,500</td><td class="year-col">'21</td></tr>
+        <tr><td>전북소방본부 트랜잭션보안 및 바이러스보호 SW 납품</td><td>㈜지란지교데이터</td><td>전라북도 소방본부</td><td class="amount-col">28,000</td><td class="year-col">'21</td></tr>
+        <tr><td>충남도청 트랜잭션보안 및 바이러스보호 SW 납품</td><td>㈜지란지교데이터</td><td>충청남도</td><td class="amount-col">28,000</td><td class="year-col">'21</td></tr>
+        <tr><td>2021년 제주소방안전 빅데이터 센터 구축 사업</td><td>㈜지란지교데이터</td><td>제주특별자치도 소방안전본부</td><td class="amount-col">19,600</td><td class="year-col">'21</td></tr>
+        <tr><td>2021 학교생활기록부 기재내용 점검 지원 SW 고도화 사업 용역</td><td>㈜아이와즈</td><td>한국과학창의재단</td><td class="amount-col">210,974</td><td class="year-col">'21</td></tr>
+        <tr><td>판교 제2테크로밸리 스마트산단 구축사업</td><td>씨이엔코퍼레이션</td><td>㈜유티정보</td><td class="amount-col">117,605</td><td class="year-col">'21</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 기술이전 -->
+  <div class="impact-subsection">
+    <div class="impact-subsection-title"><span class="ko">기술이전</span><span class="en">Technology Transfer</span></div>
+    <table class="impact-table">
+      <thead>
+        <tr>
+          <th><span class="ko">기술 실시 계약명</span><span class="en">Contract</span></th>
+          <th><span class="ko">대상기관</span><span class="en">Licensee</span></th>
+          <th><span class="ko">계약일</span><span class="en">Date</span></th>
+          <th class="amount-col"><span class="ko">기술료(천원)</span><span class="en">Fee(₩K)</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>LLM 기반 응급상황 요약 평가 대응 지원 기술</td><td>㈜송엔테크</td><td class="year-col">2025.11.28</td><td class="amount-col">16,500</td></tr>
+        <tr><td>112 긴급출동 의사결정 지원 시스템을 위한 인공지능 기반 의사결정 지원 기술</td><td>치안정책연구소</td><td class="year-col">2024.12.13</td><td class="amount-col">60,000<br><span style="font-size:0.65rem;color:var(--muted)">공공기관 무상기술이전</span></td></tr>
+        <tr><td>치안 및 공공 데이터 기반 범죄 신고 수 예측 장치 및 방법</td><td>치안정책연구소</td><td class="year-col">2021.09.01</td><td class="amount-col">35,000<br><span style="font-size:0.65rem;color:var(--muted)">공공기관 무상기술이전</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 공인시험 인증 -->
+  <div class="impact-subsection">
+    <div class="impact-subsection-title"><span class="ko">공인시험 인증 (TTA)</span><span class="en">Certified Test Results (TTA)</span></div>
+
+    <div class="cert-card">
+      <div class="cert-title">P.A.C.T.-ems platform 과제 결과물 R&D 결과검증 시험</div>
+      <div class="cert-meta">TTA-25-2102 · 2025.11.10</div>
+      <div class="cert-results">
+        · 수보과정 음성정보 기반 응급질환 범주 예측 정확도 75% 이상 확인 (<strong>86%</strong>)<br>
+        · 구급현장 데이터 통합데이터 기반 응급상황 환자 평가 정확도 80% 이상 확인 (<strong>92.64%</strong>)
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-title">112 긴급출동 의사결정 지원 시스템 과제 결과물 R&D 결과검증 시험</div>
+      <div class="cert-meta">TTA-24-1839 · 2024.11.24</div>
+      <div class="cert-results">
+        · 발화 및 질의 정보 기반 상황 인지 및 업무 분류 정확도 <strong>93.28%</strong><br>
+        · 발화 및 질의 정보 기반 상황별 위험도 예측 정확도 <strong>94.58%</strong><br>
+        · 현장 대응 방법 추론 및 실시간 의사결정 지원 서비스 요청 응답 속도 <strong>0.21초</strong>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-title">112 긴급출동 의사결정 지원 시스템 과제 결과물 R&D 과제 검증 시험</div>
+      <div class="cert-meta">TTA-23-2702 · 2023.11.21</div>
+      <div class="cert-results">
+        · 발화 및 질의 정보 기반 상황 인지 및 업무 분류 정확도 <strong>77.5%</strong><br>
+        · 발화 및 질의 정보 기반 위험도 예측 정확도 <strong>82.62%</strong>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 09 INTERVIEW -->
+<section id="interview">
+  <div class="section-header">
+    <span class="section-num">09</span>
     <h2 class="section-title"><span class="ko">언론 인터뷰</span><span class="en">Press & Media</span></h2>
   </div>
 
@@ -1057,27 +1621,27 @@ body.lang-en span.en { display: inline; }
         <span class="en">AI Researcher Protecting Public Safety — Minjung Lee</span>
       </div>
       <div class="interview-date">ETRI 사내 뉴스레터</div>
-      <a href="#" class="interview-link">📄 PDF <span class="ko">보기</span><span class="en">View</span> →</a>
+      <a href="ETRI_talk_272.pdf" class="interview-link" target="_blank">📄 PDF <span class="ko">보기</span><span class="en">View</span> →</a>
     </div>
 
-    <div class="interview-card">
+    <a href="https://www.cctoday.co.kr/news/articleView.html?idxno=2197854" class="interview-card" target="_blank" style="text-decoration:none;color:inherit;display:block;">
       <div class="interview-source">
         <span class="ko">충청투데이</span>
         <span class="en">Chungcheong Today</span>
       </div>
       <div class="interview-title">
-        <span class="ko">젊은 과학 포럼 — 공공안전을 지키는 인공지능</span>
-        <span class="en">Young Science Forum — AI Protecting Public Safety</span>
+        <span class="ko">공공 AI, 효율성과 안정성 그 사이</span>
+        <span class="en">Public AI — Between Efficiency and Stability</span>
       </div>
       <div class="interview-date">2024. 07. 08</div>
-    </div>
+    </a>
   </div>
 </section>
 
-<!-- 08 CONTACT -->
+<!-- 10 CONTACT -->
 <section id="contact">
   <div class="section-header">
-    <span class="section-num">08</span>
+    <span class="section-num">10</span>
     <h2 class="section-title"><span class="ko">연락처</span><span class="en">Contact</span></h2>
   </div>
 
@@ -1137,7 +1701,11 @@ body.lang-en span.en { display: inline; }
 function setLang(lang) {
   document.body.className = lang === 'en' ? 'lang-en' : '';
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector(\`.lang-btn[onclick="setLang('\${lang}')"]\`).classList.add('active');
+  if (lang === 'ko') {
+    document.querySelector('.lang-btn[onclick="setLang(\'ko\')"]').classList.add('active');
+  } else {
+    document.querySelector('.lang-btn[onclick="setLang(\'en\')"]').classList.add('active');
+  }
 }
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
